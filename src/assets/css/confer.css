@@ -1,0 +1,529 @@
+div.confer-overlay {
+	position: fixed;
+	display: none;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	margin: 0;
+	padding: 0;
+	background: rgba(255,255,255,0.9);
+	z-index: 1001;
+	overflow: auto;
+}
+
+div.confer-overlay-content {
+  display: none;
+  width: 70%;
+  margin: 40px auto;
+  text-align: center;
+}
+
+img.confer-overlay-loader {
+	width: 50px;
+	height: 50px;
+	position: fixed;
+	margin: auto;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+img.confer-bar-loader {
+	display: none;
+	width: 20px;
+	height: 20px;
+	margin: auto;
+}
+
+button.confer-overlay-close {
+	font-size: 32px;
+	padding: 10px 20px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index:10;
+	border-radius: 0;
+	box-shadow: none;
+	background: rgba(0,0,0,0);
+	height: auto;
+	line-height: inherit;
+	border-width: 0;
+	border:0;
+	vertical-align: baseline;
+	white-space: normal;
+}
+
+button.confer-overlay-close:focus {
+	border:0;
+	outline:0;
+}
+
+button.confer-overlay-close:hover {
+	color:rgba(87,136,242,0.8);
+}
+
+div.confer-open-conversations {
+	position: fixed;
+	top: 40px;
+	right: 0;
+	height: calc(100% - 40px);
+	z-index: 999;
+}
+
+div.confer-open-conversations.confer-disabled {
+	-webkit-filter: blur(0px) grayscale(100%);
+	filter: blur(0px) grayscale(100%);
+	cursor: default;
+}
+
+ul.confer-open-conversations-list {
+	position: absolute;
+	bottom: 35px;
+	right: 0;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+ul.confer-open-conversations-list li {
+	float: right;
+	display: inline-block;
+	padding: 2px 7px;
+	width: 60px;
+	color: white;
+	position: relative;
+	cursor: pointer; 
+}
+
+img.confer-open-conversation-avatar {
+	width: 40px;
+	height: 40px;
+	margin: 5px;
+	border-radius: 50%;
+}
+
+span.confer-open-conversation-name {
+	text-align: center;
+	color: black;
+	display: block;
+}
+
+div.confer-icon-list {
+	position: absolute;
+	bottom: 10px;
+	right: 0;
+	width: 47px;
+}
+
+i.confer-user-list-icon {
+	margin: 2px;
+}
+
+i.confer-settings-icon {
+	margin: 2px;
+}
+
+.confer-message-item {
+	display:block;
+	width:100%;
+}
+
+.confer-message-content {
+	position: absolute;
+	background: #e35583;
+	z-index: 9999;
+	width: 200px;
+	bottom: 50%;
+	margin-bottom: -10px;
+	margin-right:10px;
+	padding: 20px;
+	border-radius: 20px;
+	font-size: 1.1em;
+	text-align: center;
+	color: #fff;
+	opacity: 0;
+	cursor: default;
+	pointer-events: none;
+	font-family: Helvetica, Arial, Sans-Serif, cursive;
+	-webkit-font-smoothing: antialiased;
+	-webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
+	transition: opacity 0.3s, transform 0.3s;
+}
+
+.confer-message-west .confer-message-content {
+	left: 4em;
+	-webkit-transform-origin: -2em 50%;
+	transform-origin: -2em 50%;
+	-webkit-transform: translate3d(0,50%,0) rotate3d(1,1,1,30deg);
+	transform: translate3d(0,50%,0) rotate3d(1,1,1,30deg);
+}
+
+.confer-message-east .confer-message-content {
+	right: 4em;
+	-webkit-transform-origin: calc(100% + 2em) 50%;
+	transform-origin: calc(100% + 2em) 50%;
+	-webkit-transform: translate3d(0,50%,0) rotate3d(1,1,1,-30deg);
+	transform: translate3d(0,50%,0) rotate3d(1,1,1,-30deg);
+}
+
+.confer-message.new-message .confer-message-content {
+	opacity: 1;
+	-webkit-transform: translate3d(0,50%,0) rotate3d(0,0,0,0);
+	transform: translate3d(0,50%,0) rotate3d(0,0,0,0);
+	pointer-events: auto;
+}
+
+/* Gap "bridge" and arrow */
+
+.confer-message-content::before,
+.confer-message-content::after {
+	content: '';
+	position: absolute;
+}
+
+.confer-message-content::before {
+	height: 100%;
+	width: 3em;
+}
+
+.confer-message-content::after {
+	width: 2em;
+	height: 2em;
+	top: 50%;
+	margin: -1em 0 0;
+	background: url(../img/confer-message.svg) no-repeat center center;
+	background-size: 100%;
+}
+
+.confer-message-west .confer-message-content::before,
+.confer-message-west .confer-message-content::after {
+	right: 90%; /* because of FF, otherwise we have a gap */
+}
+
+.confer-message-east .confer-message-content::before,
+.confer-message-east .confer-message-content::after {
+	left: 90%; /* because of FF, otherwise we have a gap */
+}
+
+.confer-message-east .confer-message-content::after {
+	-webkit-transform: scale3d(-1,1,1);
+	transform: scale3d(-1,1,1);
+}
+
+div.confer-conversation-options i {
+	cursor: pointer;
+}
+
+ul.confer-conversation-message-list {
+	margin: 40px 0 20px 0;
+	height: 450px;
+	list-style: none;
+	padding: 0;
+	overflow-y: auto;
+}
+
+ul.confer-conversation-message-list div.confer-load-more-messages:hover {
+	opacity: 1;
+}
+
+div.confer-load-more-messages {
+	opacity: 0;
+	transition: opacity 0.2s ease;
+	position: absolute;
+	width: 70%;
+	padding: 10px;
+	border-radius: 4px;
+	border-bottom-right-radius: 4px;
+	border-bottom-left-radius: 4px;
+	color: white;
+	background: rgb(0, 130, 255);
+	border-bottom: 2px solid rgb(0, 100, 255);
+	cursor: pointer;
+}
+
+ul.confer-conversation-message-list li {
+	padding: 5px 0;
+	max-width: 70%;
+	margin-bottom: 10px;
+	clear: both;
+}
+
+ul.confer-conversation-message-list li.confer-conversation-message {
+	float: left;
+	text-align: left;
+	color: rgb(150,150,150);
+	font-size: 13px;
+}
+
+ul.confer-conversation-message-list li.confer-sent-message {
+	float: left;
+	text-align: left;
+	color: white;
+}
+
+ul.confer-conversation-message-list li.confer-received-message {
+	text-align: right;
+	float: right;
+}
+
+span.confer-message-body {
+	border-radius: 7px;
+	padding: 5px 10px;
+	display: inline-block;
+	clear: both;
+	margin-bottom: 3px;
+}
+
+div.confer-message-inner {
+	float: left;
+}
+
+span.confer-message-sender {
+	display: block;
+	font-size: 13px;
+	color: black;
+	font-weight: bold;
+	margin-right: 5px;
+}
+
+span.confer-message-timestamp {
+	display: block;
+	font-size: 12px;
+	color: rgb(130, 130, 130);
+}
+
+img.confer-user-avatar {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+}
+
+img.confer-sent-avatar {
+	float: left;
+	margin: 10px 15px 0 0;
+}
+
+img.confer-received-avatar {
+	float: right;
+	margin: 10px 0 0 15px;
+}
+
+li.confer-sent-message span.confer-message-body {
+	background: lightBlue;
+}
+
+li.confer-received-message span.confer-message-body {
+	background: lightGray;
+}
+
+div.confer-overlay-content label[for=body] {
+	text-align: left;
+	font-weight: bold;
+	display: block;
+}
+
+textarea.confer-new-message-input, textarea.confer-new-message-input:focus  {
+	outline: none;
+	border: none;
+	width: 100%;
+	height: 40px;
+	border-bottom: 2px solid #ddd;
+	padding: 5px 0;
+	color: rgb(150, 150, 150);
+	overflow: hidden;
+}
+
+input.confer-new-message-submit {
+	border-radius: 3px;
+	padding: 5px 7px;
+	float: right;
+}
+
+input.confer-new-message-submit:focus, input.confer-new-message-submit:hover {
+	background: gray;
+}
+
+ul.confer-user-list {
+	list-style: none;
+	padding: 0;
+	margin: 40px auto 0 auto;
+	width: 70%;
+}
+
+ul.confer-user-list li {
+	padding: 10px 20px;
+	text-align: left;
+	display: inline-block;
+	border-radius: 20px;
+}
+
+ul.confer-user-list li:hover, ul.confer-invite-user-list li:hover {
+	background: rgba(0, 0, 0, 0.1);
+	cursor: pointer;
+}
+
+div.confer-rename-conversation {
+	margin: 40px 0;
+}
+
+div.confer-rename-conversation input[name=conversation_name] {
+	display: block;
+	width: 60%;
+	border-radius: 8px;
+	padding: 7px 10px;
+	margin: auto;
+	font-size: 18px;
+	border: 1px solid #ddd;
+	outline: none;
+	text-align: center;
+}
+
+ul.confer-invite-user-list {
+	margin: 40px 0;
+	padding: 0;
+	list-style: none;
+}
+
+ul.confer-invite-user-list li {
+	padding: 10px 20px;
+	border-radius: 20px;
+	display: block;
+	text-align: left;
+}
+
+ul.confer-invite-user-list li i.fa-check {
+	display: none;
+	float: right;
+	font-size: 22px;
+	color: green;
+	vertical-align: middle;
+	margin-top: 7px;
+}
+
+ul.confer-invite-user-list li.confer-invited-user i.fa-check {
+	display: block;
+}
+
+.confer-button {
+	border: none;
+	outline: none;
+	border-radius: 20px;
+	padding: 10px 20px;
+	background: #ddd;
+}
+
+.confer-button:hover {
+	background: #ccc;
+}
+
+.confer-button.confer-button-neutral {
+	background: rgb(0, 130, 250);
+	color: white;
+}
+
+.confer-button.confer-button-neutral:hover {
+	background: rgb(0, 100, 200);
+}
+
+.confer-button.confer-button-success {
+	background: #57ad68;
+	color: white;
+}
+
+.confer-button.confer-button-success:hover {
+	background: #468c54;
+}
+
+input[type=submit].confer-invite-save {
+}
+
+div.confer-conversation-context-menu {
+	display: none;
+	position: absolute;
+}
+
+ul.confer-conversation-context-menu-options-list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.confer-button-mini {
+	padding: 3px 5px;
+	border-radius: 10px;
+	border: 1px solid #ddd;
+	margin: 0;
+	outline: 0;
+	cursor: pointer;
+}
+
+.confer-button-mini:hover {
+	border: 1px solid #ccc;
+	background: #ddd;
+}
+
+ul.confer-conversation-list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+ul.confer-conversation-list li {
+	padding: 10px;
+	border-bottom: 1px solid #ddd;
+	cursor: pointer;
+}
+
+ul.confer-conversation-list li:hover {
+	background: rgba(100, 100, 100, 0.1);
+}
+
+ul.confer-conversation-list li:last-child {
+	border-bottom: none;
+}
+
+ul.confer-conversation-list h3 {
+	font-size: 14px;
+	font-weight: bold;
+	margin: 0;
+	padding: 0 0 3px 0;
+}
+
+span.confer-bar-user-message {
+	display: block;
+	color: rgb(130, 130, 130);
+}
+
+span.confer-bar-conversation-message {
+	display: block;
+	color: rgb(130, 130, 130);
+	font-size: 13px;
+}
+
+span.confer-bar-timestamp {
+	display: block;
+	color: #ccc;
+	font-size: 12px;
+}
+
+button.confer-show-all-conversations {
+	display: block;
+	border-radius: 3px;
+	width: 96%;
+	margin: 5px auto 0 auto;
+}
+
+input.confer-input-has-error {
+	border: 1px solid red !important;
+}
+
+span.confer-form-error {
+	display: inline-block;
+	margin: 5px auto;
+	color: red;
+	padding: 10px;
+}

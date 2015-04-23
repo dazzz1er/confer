@@ -1,0 +1,24 @@
+{
+    "name": "djb/confer",
+    "description": "Easy chat system for laravel-based sites",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dan James Britchford",
+            "email": "danbritchford@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "~5.0",
+        "pusher/pusher-php-server": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+          "DJB\\Confer\\": "src/"
+        },
+        "files": [
+            "src/Helpers/helpers.php"
+        ]
+    }
+}
