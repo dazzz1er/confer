@@ -55,7 +55,7 @@ class ComposerServiceProvider extends ServiceProvider {
 public function boot()
 {
   View::composer('confer::confer', 'DJB\Confer\Http\ViewComposers\ConferComposer');
-  View::composer('confer::barconversationlist', 'DJB\Confer\Http\ViewComposers\ConferBarComposer');
+  View::composer('confer::barconversationlist', 'DJB\Confer\Http\ViewComposers\ConferBarComposer'); (optional)
 }
 ```
 
@@ -104,16 +104,40 @@ Your Pusher app details are not configured in the config file provided, they are
 ```
 
 # Assumptions of the package
-
 The package assumes you have a User model in the App namespace, and that this model has a `name` attribute (hey, if you don't have one already, why not create one with a custom getter?) and an `avatar` attribute - which is simply the filename of the avatar image file (for example `avatar-dan.jpg`) which will be appended to your avatar_dir provided in the config file of the package to find your avatar.
 
-# Potential updates
+# Optionals
+There is an optional facebook messages type bar, which you can include in your project if you'd like that functionality.
 
+Simply include the
+```
+View::composer('confer::barconversationlist', 'DJB\Confer\Http\ViewComposers\ConferBarComposer');
+```
+line in your ComposerServiceProvider, and then `@include('confer::barconversationlist')` inside a suitable containing element (like a dropdown li).
+
+If you are using bootstrap this is what I have my bar view inside:
+```html
+<li>
+  <a href="#" data-toggle="dropdown" class="dropdown-toggle" style="position: relative;" id="messages_open_icon"><i class="fa fa-btn fa-envelope"></i></a>
+  <ul class="dropdown-menu">
+    <li style="width: 400px; min-height: 40px;">
+      <ul id="messages_holder_in_bar">
+      
+      @include('confer::barconversationlist')
+      
+      </ul>
+      <!-- Messages -->
+    </li>
+  </ul>
+</li>
+```
+
+
+# Potential updates
 Likely updates include adding mentions, sounds and changing conversation names after the initial setup.
 
 What would you like to see?
 
 # Closing
-
 If you use this package in your project it would mean the absolute world to me if you let me know! This is my first package, and my first piece of code shared so really... it's close to me.
 That said please feel free to contribute to the project - I think it has a solid foundation for expansion.
