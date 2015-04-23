@@ -79,7 +79,7 @@ Link to the css file, and import the view partials in whichever pages you wish t
 
 <script src="/js/pusher.min.js"></script>
 <script src="/js/moment.min.js"></script>
-@include('confer::js')</pre></div>
+@include('confer::js')
 ```
 
 # Configuration
@@ -110,7 +110,7 @@ The package assumes you have a User model in the App namespace, and that this mo
 There is an optional facebook messages type bar, which you can include in your project if you'd like that functionality.
 
 Simply include the
-```
+```php
 View::composer('confer::barconversationlist', 'DJB\Confer\Http\ViewComposers\ConferBarComposer');
 ```
 line in your ComposerServiceProvider, and then `@include('confer::barconversationlist')` inside a suitable containing element (like a dropdown li).
