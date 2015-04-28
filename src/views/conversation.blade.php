@@ -1,5 +1,11 @@
 <h2>{{ $conversation->is_private ? 'Your private conversation with ' . $conversation->participants()->ignoreMe()->first()->name : $conversation->name }}</h2>
-<small>Conversation between {{ confer_make_list($conversation->participants->lists('name')) }}.</small>
+<small>
+@if ($conversation->isPublic())
+Conversation between all users.
+@else
+Conversation between {{ confer_make_list($conversation->participants->lists('name')) }}.
+@endif
+</small>
 @if ( ! $conversation->isGlobal())
 <div class="confer-conversation-options">
 	<i class="fa fa-user-plus confer-invite-users"></i>
