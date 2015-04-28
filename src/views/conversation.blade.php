@@ -1,6 +1,6 @@
 <h2>{{ $conversation->is_private ? 'Your private conversation with ' . $conversation->participants()->ignoreMe()->first()->name : $conversation->name }}</h2>
 <small>
-@if ($conversation->isPublic())
+@if ($conversation->isGlobal())
 Conversation between all users.
 @else
 Conversation between {{ confer_make_list($conversation->participants->lists('name')) }}.
