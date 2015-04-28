@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Foundation\AliasLoader;
 
 use \Pusher;
+use View;
 
 class ConferServiceProvider extends ServiceProvider
 {
@@ -29,6 +30,8 @@ class ConferServiceProvider extends ServiceProvider
             return new Pusher($keys['public'], $keys['secret'], $keys['app_id']);
         });
         AliasLoader::getInstance()->alias('Push', 'DJB\Confer\Facades\Push');
+        View::composer('confer::confer', 'DJB\Confer\Http\ViewComposers\ConferComposer');
+        View::composer('confer::barconversationlist', 'DJB\Confer\Http\ViewComposers\ConferBarComposer');
     }
 
     /**
