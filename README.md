@@ -21,6 +21,8 @@ Require the package via composer:
 Publish the assets:
 `php artisan vendor:publish`
 
+Add the service provider `DJB\Confer\ConferServiceProvider` to your `config\app.php`
+
 Add the seed to your database seed caller (default is `database\seeds\DatabaseSeeder.php`):
 
 ```php
@@ -42,23 +44,6 @@ public function run()
 Migrate your database with the seeds in tow:
 `php artisan migrate --seed`
 
-Add the viewcomposers to your existing `ComposerServiceProvider.php` or create one (there is a great guide you can follow on [laravel's website](http://laravel.com/docs/5.0/views#view-composers)):
-
-```php
-class ComposerServiceProvider extends ServiceProvider {
-
-/**
- * Register bindings in the container.
- *
- * @return void
- */
-public function boot()
-{
-  View::composer('confer::confer', 'DJB\Confer\Http\ViewComposers\ConferComposer');
-  View::composer('confer::barconversationlist', 'DJB\Confer\Http\ViewComposers\ConferBarComposer'); (optional)
-}
-```
-
 Add the trait to your User model:
 
 ```php
@@ -77,6 +62,7 @@ Link to the css file, and import the view partials in whichever pages you wish t
 <link href="/vendor/confer/css/confer.css" rel="stylesheet">
 @include('confer::confer')
 
+<script src="/js/jquery.min.js"></script>
 <script src="/js/pusher.min.js"></script>
 <script src="/js/moment.min.js"></script>
 @include('confer::js')
@@ -87,7 +73,7 @@ There are a number of options in the confer.php config file which are quite self
 
  * Provide a company avatar (this is the image that will show as your global chat icon should you...)
  * Allow global chat - have a free-for-all open chat, or don't... it's up to you
- * Specify a different loader to the one used (default is a sweet looking .svg by [Sam Herbert](http://samherbert.net/svg-loaders/)
+ * Specify a different loader to the one used (default is a sweet looking .svg by [Sam Herbert](http://samherbert.net/svg-loaders/))
  * Change the directory where avatars are stored
  * Enable some serious grammar enforcing (currently capitals at start of sentences, and refusal to allow the use of numbers between 0-9 without converting them to their word format)
 
@@ -109,11 +95,7 @@ The package assumes you have a User model in the App namespace, and that this mo
 # Optionals
 There is an optional facebook messages type bar, which you can include in your project if you'd like that functionality.
 
-Simply include the
-```php
-View::composer('confer::barconversationlist', 'DJB\Confer\Http\ViewComposers\ConferBarComposer');
-```
-line in your ComposerServiceProvider, and then `@include('confer::barconversationlist')` inside a suitable containing element (like a dropdown li).
+Simply put `@include('confer::barconversationlist')` inside a suitable containing element (like a dropdown li).
 
 If you are using bootstrap this is what I have my bar view inside:
 ```html
