@@ -5,6 +5,28 @@ namespace DJB\Confer\Traits;
 use Auth;
 
 trait CanConfer {
+
+	/**
+	 * Handle events on the user model
+	 *
+	 * Currently used to make the user join the global conversation when created
+	 */
+	protected static function bootHandleEvents()
+	{
+		static::created(function($user) {
+			$user->joinGlobal();
+		});
+	}
+
+	/**
+	 * Join the global conversation
+	 *
+	 * Fired by the User::created event
+	 */
+	private function joinGlobal()
+	{
+		$this->conversations()->attach(1);
+	}
 	
 	/**
 	 * Get the required data for presence
@@ -18,6 +40,11 @@ trait CanConfer {
 		];
 	}
 
+	/**
+	 * Get the conversations that are required in the messages bar
+	 * 
+	 * @return Collection of DJB\Confer\Conversation
+	 */
 	public function getBarConversations()
 	{
 		return $this->conversations()->where('is_private', false)->ignoreGlobal()->with('messages.sender')->orderBy('updated_at', 'DESC')->take(3)->get();
