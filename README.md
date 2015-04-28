@@ -12,6 +12,8 @@ Other requirements:
 
  * moment.js (it made me sad to have to require this, but it makes updating the chat timestamps so much easier)
  * jQuery
+ * Font Awesome
+ * the Laravel HTML/Form helpers (Illuminate\Html)
 
 # Installation
 
@@ -60,6 +62,7 @@ Link to the css file, and import the view partials in whichever pages you wish t
 
 ```html
 <link href="/vendor/confer/css/confer.css" rel="stylesheet">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 @include('confer::confer')
 
 <script src="/js/jquery.min.js"></script>
