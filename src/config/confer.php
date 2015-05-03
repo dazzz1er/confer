@@ -1,7 +1,7 @@
 <?php
 
 return [
-	'company_avatar' => '/vendor/confer/img/avatars/avatar-ETA.jpg',
+	'company_avatar' => '/vendor/confer/img/avatars/confer-default-global.png',
 	'loader' => '/vendor/confer/img/puff.svg',
 	'avatar_dir' => '/img/avatars/',
 	'allow_global' => true,
