@@ -586,6 +586,7 @@
 			data: { _token : self.options.token, _method : 'DELETE' },
 			success: function(data)
 			{
+				self.pusher.unsubscribe('private-conversation-' + conversation_id);
 				if ( ! from_context)
 				{
 					self.overlay.find('button.confer-overlay-close').click();
