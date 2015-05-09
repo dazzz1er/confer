@@ -367,12 +367,7 @@
 
 		self.overlay_content.keyup(function(e) {
 			if (e.keyCode == 13) {
-				if (self.overlay_content.find('form').length === 1)
-				{
-					self.overlay_content.find('form').submit();
-				} else {
-					e.preventDefault();
-				}
+				e.preventDefault();
 			}
 		});
 
@@ -505,6 +500,8 @@
         	var conversation_id = $li.attr('data-conversationId'),
         	user_id = $li.is('[data-userid]') ? $li.attr('data-userid') : false;
 
+        	if ( ! user_id) self.makeConversationUsersListen(conversation_id);
+
         	self.loadConversation(conversation_id);
         	if ( ! self.conversationIsInList(conversation_id)) self.createConversationIconInBar(user_id ? user_id : null, conversation_id, ! user_id);
         });
@@ -520,6 +517,23 @@
         		self.messagesLoaded();
         	});
         });*/
+
+	}
+
+	Confer.prototype.makeConversationUsersListen = function(conversation_id)
+	{
+
+		var self = this;
+
+		$.ajax({
+			url: self.options.base_url + '/confer/conversation/' + conversation_id + '/requested',
+			type: 'POST',
+			data: { _token : self.options.token },
+			success: function(data)
+			{
+				//
+			}
+		});
 
 	}
 

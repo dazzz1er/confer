@@ -13,6 +13,7 @@ Route::post('confer/user/{conferuser}/info', ['as' => 'confer.user.info', 'uses'
 Route::post('confer/user/{conferuser}/conversation/{conferconversation}/info', ['as' => 'confer.user.conversation.info', 'uses' => 'DJB\Confer\Http\Controllers\ConversationController@getUserAndConversationInfo']);
 Route::get('confer/conversation/{conferconversation}', ['as' => 'confer.conversation.show', 'uses' => 'DJB\Confer\Http\Controllers\ConversationController@show']);
 Route::post('confer/conversation/{conferconversation}/info', ['as' => 'confer.conversation.info', 'uses' => 'DJB\Confer\Http\Controllers\ConversationController@info']);
+Route::post('confer/conversation/{conferconversation}/requested', ['as' => 'confer.conversation.requested', 'uses' => 'DJB\Confer\Http\Controllers\ConversationController@requested']);
 Route::get('confer/conversation/find/user/{conferuser}', ['as' => 'confer.conversation.find', 'uses' => 'DJB\Confer\Http\Controllers\ConversationController@find']);
 Route::delete('confer/conversation/{conferconversation}/leave', ['as' => 'confer.conversation.participant.delete', 'uses' => 'DJB\Confer\Http\Controllers\ConversationController@leave']);
 

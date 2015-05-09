@@ -85,6 +85,11 @@ class ConversationController extends Controller {
 		return ['conversation' => $conversation];
 	}
 
+	public function requested(Conversation $conversation)
+	{
+		$this->dispatch(new ConversationWasRequested($conversation, $this->user));
+	}
+
 	/**
 	 * Get a status list of the users in the confer system
 	 * 
@@ -120,7 +125,7 @@ class ConversationController extends Controller {
 	public function find(User $user)
 	{
 		$conversation = Conversation::findOrCreateBetween($this->user, $user);
-		$this->dispatch(new ConversationWasRequested($conversation, $this->user, $user));
+		$this->dispatch(new ConversationWasRequested($conversation, $this->user));
 		return $this->show($conversation);
 	}
 
