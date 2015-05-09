@@ -368,11 +368,11 @@
 		self.overlay_content.keyup(function(e) {
 			if (e.keyCode == 13) {
 				if (self.overlay_content.find('form').length === 1)
--				{
--					self.overlay_content.find('form').submit();
--				} else {
--					e.preventDefault();
--				}
+				{
+					self.overlay_content.find('form').submit();
+				} else {
+					e.preventDefault();
+				}
 			}
 		});
 
