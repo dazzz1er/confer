@@ -490,6 +490,8 @@
         	var conversation_id = $li.attr('data-conversationId'),
         	user_id = $li.is('[data-userid]') ? $li.attr('data-userid') : false;
 
+        	if ( ! user_id) self.makeConversationUsersListen(conversation_id);
+        	
         	self.loadConversation(conversation_id);
         	if ( ! self.conversationIsInList(conversation_id)) self.createConversationIconInBar(user_id ? user_id : null, conversation_id, ! user_id);
         });
