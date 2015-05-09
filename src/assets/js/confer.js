@@ -367,7 +367,12 @@
 
 		self.overlay_content.keyup(function(e) {
 			if (e.keyCode == 13) {
-				e.preventDefault();
+				if (self.overlay_content.find('form').length === 1)
+-				{
+-					self.overlay_content.find('form').submit();
+-				} else {
+-					e.preventDefault();
+-				}
 			}
 		});
 
@@ -491,7 +496,7 @@
         	user_id = $li.is('[data-userid]') ? $li.attr('data-userid') : false;
 
         	if ( ! user_id) self.makeConversationUsersListen(conversation_id);
-        	
+
         	self.loadConversation(conversation_id);
         	if ( ! self.conversationIsInList(conversation_id)) self.createConversationIconInBar(user_id ? user_id : null, conversation_id, ! user_id);
         });
