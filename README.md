@@ -3,6 +3,14 @@ Add a real-time chat system to your laravel 5 website/application in a few lines
 
 Recently I have had a few projects that have required a chat feature, and I wanted to create a laravel package - so here it is!
 
+# Demo
+You can see a demo and test the package at [www.confer.work](http://www.confer.work).
+The demo is limited to 19 concurrent users, and you will automatically be logged in if a user slot is available - otherwise you may have to wait for a slot to free up.
+
+Everything you post in the demo will be saved under the test user you are logged in as, so please avoid rude language or sensitive information.
+
+I will refresh the database every now and again to clear the test messages.
+
 # Requirements
 The project currently requires Pusher (php-server and javascript) to allow real-time chat messaging. I really recommend this service if you need to do anything real-time - it's fast, reliable and very easy to implement in your projects.
 
