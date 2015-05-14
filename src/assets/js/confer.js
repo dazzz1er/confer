@@ -459,13 +459,12 @@
             		self.context_menu.find('li#confer-context-leave-conversation').hide();
             	}
 
-	            $(document).on("click", function(event) {
+	            $(document).one("click", function(event) {
 		    		// Hide the menu if it is open and the user has clicked
 			    	self.context_menu.fadeOut(50);
 			    	setTimeout(function() {
 			    		self.context_menu.find('li#confer-context-leave-conversation').show();
 			    	}, 100);
-			    	$(document).off('click');
 			    });
 			}
 
@@ -874,12 +873,22 @@
 
 	}
 
+	Confer.prototype.messageIsValid = function(message)
+	{
+
+		return message.length > 0;
+
+	}
+
 	Confer.prototype.sendNewMessage = function ($form)
 	{
 
 		var self = this;
 
 		var body = $form.find('.confer-new-message-input').val();
+
+		if ( ! self.messageIsValid(body)) return false;
+
 		$form[0].reset();
 		$.ajax({
 			url: $form.attr('action'),
