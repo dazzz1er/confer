@@ -465,7 +465,6 @@
 			    	setTimeout(function() {
 			    		self.context_menu.find('li#confer-context-leave-conversation').show();
 			    	}, 100);
-			    	$(document).off('click');
 			    });
 			}
 
