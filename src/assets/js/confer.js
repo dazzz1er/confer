@@ -459,7 +459,7 @@
             		self.context_menu.find('li#confer-context-leave-conversation').hide();
             	}
 
-	            $(document).on("click", function(event) {
+	            $(document).one("click", function(event) {
 		    		// Hide the menu if it is open and the user has clicked
 			    	self.context_menu.fadeOut(50);
 			    	setTimeout(function() {
