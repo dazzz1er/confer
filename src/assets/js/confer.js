@@ -873,12 +873,22 @@
 
 	}
 
+	Confer.prototype.messageIsValid = function(message)
+	{
+
+		return message.length > 0;
+
+	}
+
 	Confer.prototype.sendNewMessage = function ($form)
 	{
 
 		var self = this;
 
 		var body = $form.find('.confer-new-message-input').val();
+
+		if ( ! self.messageIsValid(body)) return false;
+
 		$form[0].reset();
 		$.ajax({
 			url: $form.attr('action'),
