@@ -876,7 +876,7 @@
 	Confer.prototype.messageIsValid = function(message)
 	{
 
-		return message.length > 0;
+		return message.length > 0 && $.trim(message) !== '';
 
 	}
 
