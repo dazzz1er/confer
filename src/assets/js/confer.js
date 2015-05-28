@@ -1077,7 +1077,7 @@
 				$inner = $('<div></div>').addClass('confer-message-inner'),
 				$sender = $('<span></span>').addClass('confer-message-sender').text(message.sender.name),
 				$timestamp = $('<span></span>').addClass('confer-message-timestamp').text(use_timestamp ? message.created_at : 'Just now').attr('data-timestamp', message.created_at),
-				$body = $('<span></span>').addClass('confer-message-body').html(message.body);
+				$body = $('<span></span>').addClass('confer-message-body').text(message.body);
 
 			$inner.append($sender).append($body).append($timestamp);
 			return $message.append($avatar).append($inner);

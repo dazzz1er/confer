@@ -8,7 +8,7 @@
 	<h3>{{ $conversation->name }}</h3>
 	@if ($conversation->messages->last()->type === 'user_message')
 	<span class="confer-bar-user-message">
-		<strong>{{ $conversation->messages->last()->sender->name }}: </strong>{!! $conversation->messages->last()->body !!}
+		<strong>{{ $conversation->messages->last()->sender->name }}: </strong>{{{ $conversation->messages->last()->body }}}
 	</span>
 	@else
 	<span class="confer-bar-conversation-message">
