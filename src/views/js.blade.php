@@ -30,6 +30,7 @@ String.prototype.capitalize = function() {
 		token : "{{ csrf_token() }}",
 		loader : "{{ config('confer.loader') }}",
         requested_conversations : {{ Session::has('confer_requested_conversations') ? json_encode(Session::get('confer_requested_conversations')) : '[]' }},
+        use_emoji : "{{ config('confer.enable_emoji') }}",
 		grammar_enforcer : "{{ config('confer.grammar_enforcer') }}"
 	};
 	var confer = new window.Confer($('div.confer-overlay'), $('ul.confer-open-conversations-list'), {{ Auth::user()->id }}, options);

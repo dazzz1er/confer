@@ -5,5 +5,6 @@ return [
 	'loader' => '/vendor/confer/img/puff.svg',
 	'avatar_dir' => '/img/avatars/',
 	'allow_global' => true,
+	'enable_emoji' => false,
 	'grammar_enforcer' => true
 ];

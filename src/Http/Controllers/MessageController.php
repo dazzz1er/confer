@@ -36,7 +36,7 @@ class MessageController extends Controller {
 	public function store(Conversation $conversation, Request $request)
 	{
 		$message = Message::create([
-			'body' => $request->input('body'),
+			'body' => config('confer.enable_emoji') ? confer_convert_emoji_to_shortcodes($request->input('body')) : $request->input('body'),
 			'conversation_id' => $conversation->id,
 			'sender_id' => $this->user->id,
 			'type' => 'user_message'
