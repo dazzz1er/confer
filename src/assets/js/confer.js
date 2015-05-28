@@ -25,6 +25,7 @@
 		messages_container : $('a#messages_open_icon').siblings('ul.dropdown-menu').children('li').first(),
 		connection_retries : 3,
 		verbose : false,
+		use_emoji: true,
 		use_sounds : true,
 		grammar_enforcer : true
 
@@ -269,6 +270,8 @@
 		message.slideDown(100);
 		setTimeout(function() {
 			list.scrollTop(list.prop("scrollHeight"));
+			var body = message.find('.confer-message-body');
+			if (body.length && self.options.use_emoji) body.html(emojione.shortnameToImage(body.text()));
 		}, 150);
 
 	}
@@ -981,6 +984,23 @@
 		self.updateTimestampSchedule = setInterval(function() {
 			self.updateTimestamps();
 		}, 60000);
+
+		if (self.options.use_emoji)
+		{
+			self.initialiseEmoji();
+		}
+
+	}
+
+	Confer.prototype.initialiseEmoji = function ()
+	{
+
+		var self = this;
+
+		self.overlay_content.find('.confer-message-body').each(function(index, value) {
+			var text = $(this).text();
+			$(this).html(emojione.shortnameToImage(text));
+		});
 
 	}
 
