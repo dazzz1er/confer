@@ -270,6 +270,8 @@
 		message.slideDown(100);
 		setTimeout(function() {
 			list.scrollTop(list.prop("scrollHeight"));
+			var body = message.find('.confer-message-body');
+			if (body.length && self.options.use_emoji) body.html(emojione.shortnameToImage(body.text()));
 		}, 150);
 
 	}
