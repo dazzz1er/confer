@@ -14,6 +14,9 @@
         "illuminate/html": "~5.0",
         "pusher/pusher-php-server": "dev-master"
     },
+    "suggest": {
+        "emojione/emojione": "Will allow emoji support within confer"
+    },
     "autoload": {
         "psr-4": {
           "DJB\\Confer\\": "src/"
