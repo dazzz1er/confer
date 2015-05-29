@@ -772,7 +772,7 @@
 					var $this = $(this);
 					$this.slideDown(100);
 					var body = $this.find('.confer-message-body');
-					if (body.length && self.options.use_emoji) body.html(emojione.shortnameToImage($this.text()));
+					if (body.length && self.options.use_emoji) body.html(emojione.shortnameToImage($body.text()));
 				});
 				if (num_messages < 5) self.removeLoadMoreMessagesOption();
 				/*setTimeout(function() {
