@@ -12,7 +12,6 @@ class ConferBarComposer {
     /**
      * Create a new profile composer.
      *
-     * @param  UserRepository  $users
      * @return void
      */
     public function __construct()
