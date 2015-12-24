@@ -81,11 +81,11 @@ class Conversation extends Model {
 	public static function findOrCreateBetween(\App\User $user, \App\User $other_user)
 	{
 		$user_participates = $user->privateConversations();
-		$other_user_partcipates = $other_user->privateConversations();
+		$other_user_participates = $other_user->privateConversations();
 
 		$static = new static;
 
-		$shared_participations = collect(array_intersect($user_participates, $other_user_partcipates));
+		$shared_participations = collect(array_intersect($user_participates, $other_user_participates));
 		return $shared_participations->isEmpty() ? $static->createBetween($user, $other_user) : $static->find($shared_participations->first());
 	}
 
